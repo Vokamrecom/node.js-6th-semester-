@@ -1,0 +1,15 @@
+{
+    "db": "cwp35",
+    "login": "root",
+    "password": "1113",
+    "options": {
+        "dialect": "mysql",
+        "host": "localhost",
+        "define": {
+            "timestamps": false,
+            "paranoid": false,
+            "freezeTableName": true
+        },
+        "logging": false
+    }
+}

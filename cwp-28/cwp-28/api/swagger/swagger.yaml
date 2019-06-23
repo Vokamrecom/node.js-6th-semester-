@@ -1,0 +1,629 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+host: localhost:3000
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /hello:
+    x-swagger-router-controller: hello_world
+    get:
+      description: Returns 'Hello' to the caller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/HelloWorldResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /foods:
+    x-swagger-router-controller: foodscontroller
+    get:
+      description: Foods
+      operationId: getAll
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ResultResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ResultResponse"
+  /persons:
+    x-swagger-router-controller: personscontroller
+    get:
+      description: Persons
+      operationId: getAll
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ResultResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ResultResponse"
+  /agents/ingestions:
+    x-swagger-router-controller: ingestionscontroller
+    get:
+      description: Ingestions
+      operationId: getAll
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ResultResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ResultResponse"
+  /agents:
+    x-swagger-router-controller: agentscontroller
+    get:
+      description: Agents
+      operationId: getAll
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ResultResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ResultResponse"
+  /agents/{id}:
+    x-swagger-router-controller: agentscontroller
+    get:
+      description: Agents
+      operationId: get
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ResultResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ResultResponse"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "string"
+    post:
+      description: persons
+      operationId: update
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Any description"
+        required: true
+        schema:
+          $ref: "#/definitions/NewAgent"
+      responses:
+        405:
+          description: "Invalid input"
+    delete:
+      description: persons
+      operationId: deleteF
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "integer"
+      responses:
+        405:
+          description: "Invalid input"
+  /foods/{id}:
+    x-swagger-router-controller: foodscontroller
+    get:
+      description: Foods
+      operationId: get
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ResultResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ResultResponse"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "string"
+    post:
+      description: persons
+      operationId: update
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Any description"
+        required: true
+        schema:
+          $ref: "#/definitions/NewFood"
+      responses:
+        405:
+          description: "Invalid input"
+    delete:
+      description: persons
+      operationId: deleteF
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "integer"
+      responses:
+        405:
+          description: "Invalid input"
+  /agents/ingestions/{id}:
+    x-swagger-router-controller: ingestionscontroller
+    get:
+      description: ingestions
+      operationId: get
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ResultResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ResultResponse"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "string"
+    post:
+      description: persons
+      operationId: update
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Any description"
+        required: true
+        schema:
+          $ref: "#/definitions/NewIngestion"
+      responses:
+        405:
+          description: "Invalid input"
+    delete:
+      description: persons
+      operationId: deleteF
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "integer"
+      responses:
+        405:
+          description: "Invalid input"
+  /persons/{id}:
+    x-swagger-router-controller: personscontroller
+    get:
+      description: persons
+      operationId: get
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ResultResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ResultResponse"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "string"
+    post:
+      description: persons
+      operationId: update
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Any description"
+        required: true
+        schema:
+          $ref: "#/definitions/NewPerson"
+      responses:
+        405:
+          description: "Invalid input"
+    delete:
+      summary: "Person"
+      description: persons
+      operationId: deleteF
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id"
+        required: true
+        type: "integer"
+      responses:
+        405:
+          description: "Invalid input"
+  /persons/create:
+    x-swagger-router-controller: personscontroller
+    post:
+      summary: "Person"
+      description: persons
+      operationId: create
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: Any description"
+        required: true
+        schema:
+          $ref: "#/definitions/NewPerson"
+      responses:
+        405:
+          description: "Invalid input"
+  /agents/create:
+    x-swagger-router-controller: agentscontroller
+    post:
+      summary: "Agents"
+      description: Agents
+      operationId: create
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: Any description"
+        required: true
+        schema:
+          $ref: "#/definitions/NewAgent"
+      responses:
+        405:
+          description: "Invalid input"
+  /foods/create:
+    x-swagger-router-controller: foodscontroller
+    post:
+      summary: "Person"
+      description: persons
+      operationId: create
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: Any description"
+        required: true
+        schema:
+          $ref: "#/definitions/NewFood"
+      responses:
+        405:
+          description: "Invalid input"
+  /agents/ingestions/create:
+    x-swagger-router-controller: ingestionscontroller
+    post:
+      summary: "ingestions"
+      description: persons
+      operationId: create
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: Any description"
+        required: true
+        schema:
+          $ref: "#/definitions/NewIngestion"
+      responses:
+        405:
+          description: "Invalid input"
+definitions:
+  NewPerson:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      address:
+        type: "string"
+      isAlive:
+        type: "boolean"
+    xml:
+      name: "Person"
+  Person:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+      address:
+        type: "string"
+      isAlive:
+        type: "boolean"
+    xml:
+      name: "Person"
+  NewFood:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      calories:
+        type: "integer"
+        format: "int32"
+    xml:
+      name: "Food"
+  Food:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+      calories:
+        type: "integer"
+        format: "int32"
+    xml:
+      name: "Food"
+  NewAgent:
+    type: "object"
+    properties:
+      callsign:
+        type: "string"
+    xml:
+      name: "Agent"
+  Agent:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      callsign:
+        type: "string"
+    xml:
+      name: "Agent"
+  NewIngestion:
+    type: "object"
+    properties:
+      when:
+        type: "string"
+      foodId:
+        type: "integer"
+        format: "int32"
+      personId:
+        type: "integer"
+        format: "int32"
+      reportedById:
+        type: "integer"
+        format: "int32"
+    xml:
+      name: "Ingestion"
+  Ingestion:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      when:
+        type: "string"
+        format: "date-time"
+      foodId:
+        type: "integer"
+        format: "int32"
+      personId:
+        type: "integer"
+        format: "int32"
+      reportedById:
+        type: "integer"
+        format: "int32"
+    xml:
+      name: "Ingestion"
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      petId:
+        type: "integer"
+        format: "int64"
+      quantity:
+        type: "integer"
+        format: "int32"
+      shipDate:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        description: "Order Status"
+        enum:
+        - "placed"
+        - "approved"
+        - "delivered"
+      complete:
+        type: "boolean"
+        default: false
+    xml:
+      name: "Order"
+  Category:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Category"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+    xml:
+      name: "User"
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Tag"
+  Pet:
+    type: "object"
+    required:
+    - "name"
+    - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      category:
+        $ref: "#/definitions/Category"
+      name:
+        type: "string"
+        example: "doggie"
+      photoUrls:
+        type: "array"
+        xml:
+          name: "photoUrl"
+          wrapped: true
+        items:
+          type: "string"
+      tags:
+        type: "array"
+        xml:
+          name: "tag"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Tag"
+      status:
+        type: "string"
+        description: "pet status in the store"
+        enum:
+        - "available"
+        - "pending"
+        - "sold"
+    xml:
+      name: "Pet"
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ResultResponse:
+    properties:
+      result:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

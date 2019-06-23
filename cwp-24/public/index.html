@@ -1,0 +1,55 @@
+<html>
+<link rel="stylesheet" href="./css.css">
+
+<body>
+<div id="app" v-cloak>
+    <div class="input-container">
+        <select class="code-selector" v-model="code">
+            <option v-for="code in codes">{{code}}</option>
+        </select>
+        <input type="text" placeholder="Interval" v-model="interval">
+        <button @click="sendRequest">Submit</button>
+    </div>
+    <div class="messages-wrapper">
+        <div class="messages-container">
+            <div>
+                <div class="messages">
+                    <div class="message" v-for="message in messages.info">
+                        <p>
+                            <strong>{{ message.code }} </strong>
+                            {{ message.info }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="messages">
+                    <div class="message" v-for="message in messages.buy">
+                        <p>
+                            <strong>{{ message.id }}: </strong>
+                            {{ message.message }}
+                        </p>
+                    </div>
+                </div>
+                <input v-model="buyInput" type="text" @keyup.enter="sendMessage('buy', 'buyInput')">
+            </div>
+            <div>
+                <div class="messages">
+                    <div class="message" v-for="message in messages.sell">
+                        <p>
+                            <strong>{{ message.id }}: </strong>
+                            {{ message.message }}
+                        </p>
+                    </div>
+                </div>
+                <input v-model="sellInput" type="text" @keyup.enter="sendMessage('sell', 'sellInput')">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="./index.js"></script>
+</body>
+</html>

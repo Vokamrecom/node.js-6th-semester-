@@ -1,0 +1,12 @@
+{
+  "db":{
+    "host":"127.0.0.1",
+    "name":"cwp21",
+    "user":"root",
+    "password":"1113"
+  },
+  "cookie":{
+    "key":"secret key",
+    "author":"__author_id"
+  }
+}
