@@ -2,7 +2,7 @@
     "name": "kiril",
     "version": "1.0.0",
     "dependencies": {
-        "axios": "^0.18.0",
+        "axios": "^0.21.1",
         "express": "^4.16.2",
         "socket.io": "^2.0.4",
         "socketio": "^1.0.0"
